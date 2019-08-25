@@ -1,0 +1,12 @@
+.DS_Store
+
+# intellij
+.idea
+*.iml
+*.iws
+
+# Maven
+**/target/*
+
+# shaded
+**/dependency-reduced-pom.xml
