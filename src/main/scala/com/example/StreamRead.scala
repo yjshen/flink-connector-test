@@ -23,7 +23,7 @@ object StreamRead {
     prop.setProperty("service.url", "pulsar://localhost:6650")
     prop.setProperty("admin.url", "http://localhost:8080")
     prop.setProperty("startingOffsets", "earliest")
-    prop.setProperty("topic", "nasa-topic")
+    prop.setProperty("topic", args(0))
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.getConfig.disableSysoutLogging()
@@ -36,11 +36,13 @@ object StreamRead {
       .inAppendMode()
       .registerTableSource("nasa-data")
 
-    val nasaTable = tEnv.scan("nasa-data")
+    val nasaTable = tEnv.scan("nasa-data").select("id, missionName, startYear")
     nasaTable.printSchema()
     val schema = nasaTable.getSchema
     val stream = tEnv.toAppendStream(nasaTable)(schema.toRowType)
 
     stream.print()
+
+    env.execute("Flink read NASA data out by table api")
   }
 }

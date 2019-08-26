@@ -30,20 +30,24 @@ The steps to run the example:
     $ mvn clean package -DskipTests
     ```
    
-4. Run `StreamWrite` to produce NASA data to Pulsar topic `nasa-topic`.
+4. Run `StreamWrite` to produce NASA data to Pulsar topic _TOPIC_NAME_.
 
     ```bash
-    $ ./bin/flink run -c com.example.StreamWrite ${Example_project}/target/flink-connector-test-1.0-SNAPSHOT.jar
+    $ ./bin/flink run -c com.example.StreamWrite ${Example_project}/target/flink-connector-test-1.0-SNAPSHOT.jar [TOPIC_NAME]
     ```
    
-5. Run `StreamRead` to read NASA data out.
+5. Run `StreamRead` to read NASA data out from _TOPIC_NAME_.
 
     ```bash
-    $ ./bin/flink run -c com.exmple.StreamRead ${Example_project}/target/flink-connector-test-1.0-SNAPSHOT.jar
+    $ ./bin/flink run -c com.exmple.StreamRead ${Example_project}/target/flink-connector-test-1.0-SNAPSHOT.jar [TOPIC_NAME]
     ```
    
    You will see sample output for above application as follows:
    
     ```
-    
+    1,Mercury program,1959
+    2,Apollo program,1961
+    3,Gemini program,1963
+    4,Skylab,1973
+    5,Apollo–Soyuz Test Project,1975 
     ```

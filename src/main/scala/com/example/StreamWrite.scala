@@ -12,7 +12,7 @@ object StreamWrite {
     val prop = new Properties()
     prop.setProperty("service.url", "pulsar://localhost:6650")
     prop.setProperty("admin.url", "http://localhost:8080")
-    prop.setProperty("topic", "nasa-topic")
+    prop.setProperty("topic", args(0))
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.enableCheckpointing(5000)
